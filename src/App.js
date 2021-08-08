@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Book from './components/Book';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    return (
+        <div className="App">
+            <Book
+                title="Straż"
+                author="John Smith"
+                publicationDate='2012'
+                genre='fantastyka'
+            />
+            <Book
+                title="WP"
+                author="JRRtolkiem"
+                publicationDate='1655'
+                genre='fantastyka'
+            />
+            <Book
+                title="some"
+                author="GreenBook"
+                publicationDate='7896'
+                genre='fantastyka'
+            />
+        </div>
+    );
 }
 
 export default App;
