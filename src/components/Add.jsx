@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useDropdown from "./useDropdown";
 
 const Add = () => {
     const [author, setAuthor] = useState("");
-    const [genre, setGenre] = useState("");
-    const [audience, setAudience] = useState("");
+    // const [genre, setGenre] = useState("");
+    // const [audience, setAudience] = useState("");
     const genres = ["kryminal", "fantastyka", "horror"];
     const audiences = ["dzieci", "mlodziez", "dorosli"];
+    const [genre, GenreDropdown] = useDropdown("", "Gatunek", genres);
+    const [audience, AudienceDropdown] = useDropdown("", "Dla", audiences);
+
+    useEffect(() => {
+        console.log("useEffect");
+    }, [genre]);
+
     return (
         <div>
             <form>
@@ -15,47 +23,13 @@ const Add = () => {
                         id="author"
                         value={author}
                         placeholder="wpisz autora"
-                        onchange={(event) => setAuthor(event.target.value)}
+                        onChange={(event) => setAuthor(event.target.value)}
                     />
                 </label>
                 <br />
-                <label htmlFor="genres">
-                    Gatunek
-                    <select
-                        name=""
-                        value={genre}
-                        onchange={(event) => setGenre(event.target.value)}
-                        onBlur={(event) => setGenre(event.target.value)}
-                    >
-                        <option value="">Dowolna</option>
-                        {genres.map((genres) => {
-                            return (
-                                <option key={genres} value={genre}>
-                                    {genres}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </label>
+                <GenreDropdown />
                 <br></br>
-                <label htmlFor="audence">
-                    Dla
-                    <select
-                        name=""
-                        value={audience}
-                        onchange={(event) => setGenre(event.target.value)}
-                        onBlur={(event) => setGenre(event.target.value)}
-                    >
-                        <option value="">Dowolna</option>
-                        {audiences.map((audience) => {
-                            return (
-                                <option key={audience} value={audience}>
-                                    {audience}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </label>
+                <AudienceDropdown />
                 <br />
                 <button>Dodaj</button>
             </form>
