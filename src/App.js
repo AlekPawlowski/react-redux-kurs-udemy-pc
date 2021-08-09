@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Router } from '@reach/router';
 import './App.css';
 import Add from './components/Add';
 import Inventory from './components/Inventory';
@@ -20,8 +21,11 @@ const App = () => {
 
     return (
         <div className="App">
-            <Add books={books} setBooks={setBooks} />
-            <Inventory books={books} />
+            <h1>react bookstore</h1>
+            <Router>
+                <Add path="/admin" books={books} setBooks={setBooks} />
+                <Inventory books={books} path="/" />
+            </Router>
         </div>
     );
 }
