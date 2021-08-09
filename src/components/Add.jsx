@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useDropdown from "./useDropdown";
 import * as mockData from "../mock/books.json";
 
@@ -10,19 +10,6 @@ const Add = () => {
     const audiences = ["Dzieci", "Młodzież", "Dorośli"];
     const [genre, GenreDropdown] = useDropdown("", "Gatunek", genres);
     const [audience, AudienceDropdown] = useDropdown("", "Dla", audiences);
-    const [books, setBooks] = useState([]);
-
-    useEffect(() => {
-        fetch("https://clockworkjava.pl/books.php")
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setBooks(data);
-                console.log("data", data);
-            });
-        // setBooks(mockData);
-    }, []);
 
     return (
         <div>

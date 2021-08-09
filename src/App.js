@@ -1,34 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Book from './components/Book';
 import Add from './components/Add';
+import Inventory from './components/Inventory';
 
 const App = () => {
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        fetch("https://clockworkjava.pl/books.php")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                setBooks(data);
+                console.log("data", data);
+            });
+        // setBooks(mockData);
+    }, []);
 
     return (
         <div className="App">
-            <Add />
-            <Book
-                title="Straż"
-                author="John Smith"
-                publicationDate='2012'
-                genre='fantastyka'
-                audience="mlodziez"
-            />
-            <Book
-                title="WP"
-                author="JRRtolkiem"
-                publicationDate='1655'
-                genre='fantastyka'
-                audience="dorosli"
-            />
-            <Book
-                title="some"
-                author="GreenBook"
-                publicationDate='7896'
-                genre='fantastyka'
-                audience="dzieci"
-            />
+            <Add books={books} setBooks={setBooks} />
+            <Inventory books={books} />
         </div>
     );
 }
