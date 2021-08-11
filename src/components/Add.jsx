@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useDropdown from "./useDropdown";
+import InputComponent from "./InputComponent";
 
 const Add = ({ books, setBooks }) => {
     const [author, setAuthor] = useState("");
@@ -28,37 +29,24 @@ const Add = ({ books, setBooks }) => {
     return (
         <div>
             <form>
-                <label htmlFor="title">
-                    Tytuł
-                    <input
-                        id="title"
-                        value={title}
-                        placeholder="wpisz tytuł"
-                        onChange={(event) => setTitle(event.target.value)}
-                    />
-                </label>
+                <InputComponent
+                    label="Tytuł"
+                    state={title}
+                    setState={setTitle}
+                />
                 <br />
-                <label htmlFor="author">
-                    Autor
-                    <input
-                        id="author"
-                        value={author}
-                        placeholder="wpisz autora"
-                        onChange={(event) => setAuthor(event.target.value)}
-                    />
-                </label>
+                <InputComponent
+                    label="Autor"
+                    state={author}
+                    setState={setAuthor}
+                />
                 <br />
-                <label htmlFor="publicationDate">
-                    data publikacji
-                    <input
-                        id="publicationDate"
-                        value={publicationDate}
-                        placeholder="wpisz date"
-                        onChange={(event) =>
-                            setPublicationDate(event.target.value)
-                        }
-                    />
-                </label>
+                <InputComponent
+                    label="Publikacja"
+                    state={publicationDate}
+                    setState={setPublicationDate}
+                    type="number"
+                />
                 <br />
                 <GenreDropdown />
                 <br></br>
