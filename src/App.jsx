@@ -30,7 +30,7 @@ export const App = () => {
                 <h1>admin</h1>
             </Link>
             <Router>
-                <Add path="/admin" books={books} setBooks={() => {}} />
+                <Add path="/admin" />
                 <Inventory books={books} path="/" />
             </Router>
         </div>
