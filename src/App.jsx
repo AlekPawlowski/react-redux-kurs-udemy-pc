@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Router, Link } from '@reach/router';
-import './App.css';
-import Add from './components/Add';
-import Inventory from './components/Inventory';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Router, Link } from "@reach/router";
+import "./App.css";
+import Add from "./components/Add";
+import Inventory from "./components/Inventory";
+import { ADD_BOOK } from "./store/reducer.js";
 
-const App = () => {
+export const App = () => {
     const [books, setBooks] = useState([]);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         fetch("https://clockworkjava.pl/books.php")
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                setBooks(data);
-                console.log("data", data);
+                data.forEach((book) =>
+                    dispatch({ type: ADD_BOOK, payload: book })
+                );
             });
         // setBooks(mockData);
     }, []);
@@ -33,6 +36,6 @@ const App = () => {
             </Router>
         </div>
     );
-}
+};
 
 export default App;
