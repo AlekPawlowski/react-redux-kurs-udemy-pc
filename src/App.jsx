@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Router, Link } from "@reach/router";
 import { Add } from "./components/Add";
@@ -6,7 +6,6 @@ import { Inventory } from "./components/Inventory";
 import { ADD_BOOK } from "./store/reducer.js";
 
 export const App = () => {
-    // const [books, setBooks] = useState([]);
     const dispatch = useDispatch();
     const books = useSelector((state) => state.reducer.books);
 
@@ -17,7 +16,6 @@ export const App = () => {
             })
             .then((data) => {
                 data.forEach((book) => {
-                    console.log(book.title);
                     dispatch({ type: ADD_BOOK, payload: book });
                 });
             });
