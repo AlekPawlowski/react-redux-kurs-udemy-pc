@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
-import reducer from "./reducer";
+import reducer from "./reducer.js";
 
 const rootReducer = combineReducers(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    reducer
 );
 
 export default rootReducer;

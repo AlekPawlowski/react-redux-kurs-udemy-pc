@@ -2,7 +2,7 @@ import React from "react";
 import Book from "./Book";
 import { Link } from "@reach/router";
 
-const Inventory = ({ books }) => {
+export const Inventory = ({ books }) => {
     const bookComponents = books.map((book) => {
         return (
             <Book

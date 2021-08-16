@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useDropdown from "./useDropdown";
 import InputComponent from "./InputComponent";
 
-const Add = ({ books, setBooks }) => {
+export const Add = ({ books, setBooks }) => {
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [publicationDate, setPublicationDate] = useState("");

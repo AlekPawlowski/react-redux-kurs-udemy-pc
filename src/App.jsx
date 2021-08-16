@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Router, Link } from "@reach/router";
-import "./App.css";
-import Add from "./components/Add";
-import Inventory from "./components/Inventory";
+import { Add } from "./components/Add";
+import { Inventory } from "./components/Inventory";
 import { ADD_BOOK } from "./store/reducer.js";
 
 export const App = () => {
-    const [books, setBooks] = useState([]);
+    // const [books, setBooks] = useState([]);
     const dispatch = useDispatch();
+    const books = useSelector((state) => state.reducer.books);
+
     useEffect(() => {
         fetch("https://clockworkjava.pl/books.php")
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                data.forEach((book) =>
-                    dispatch({ type: ADD_BOOK, payload: book })
-                );
+                data.forEach((book) => {
+                    console.log(book.title);
+                    dispatch({ type: ADD_BOOK, payload: book });
+                });
             });
-        // setBooks(mockData);
     }, []);
 
     return (
@@ -31,7 +32,7 @@ export const App = () => {
                 <h1>admin</h1>
             </Link>
             <Router>
-                <Add path="/admin" books={books} setBooks={setBooks} />
+                <Add path="/admin" books={books} setBooks={() => {}} />
                 <Inventory books={books} path="/" />
             </Router>
         </div>
