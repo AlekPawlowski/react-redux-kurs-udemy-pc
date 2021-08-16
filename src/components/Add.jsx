@@ -24,7 +24,10 @@ export const Add = () => {
             genre: genre,
             audience: audience,
         };
+        console.log(newBook);
+        // fbase.syncState('books/', {
 
+        // });
         dispatch({ type: ADD_BOOK, payload: newBook });
     };
 
