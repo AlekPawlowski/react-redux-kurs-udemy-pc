@@ -25,10 +25,11 @@ export const Add = () => {
             audience: audience,
         };
         console.log(newBook);
-        // fbase.syncState('books/', {
-
-        // });
         dispatch({ type: ADD_BOOK, payload: newBook });
+        fbase.syncState("bookstore/book", {
+            context: newBook,
+            state: "newBook",
+        });
     };
 
     return (
