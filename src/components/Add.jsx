@@ -26,10 +26,18 @@ export const Add = () => {
         };
         console.log(newBook);
         dispatch({ type: ADD_BOOK, payload: newBook });
-        fbase.syncState("bookstore/book", {
-            context: newBook,
-            state: "newBook",
-        });
+        fbase
+            .collection("bookstore")
+            .add({
+                author: newBook.author,
+                title: newBook.title,
+                publicationDate: newBook.publicationDate,
+                genre: newBook.genre,
+                audience: newBook.audience,
+            })
+            .catch((error) => {
+                alert(`there is an error ${error.message}`);
+            });
     };
 
     return (
